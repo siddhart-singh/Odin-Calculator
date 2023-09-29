@@ -49,6 +49,7 @@ sign.addEventListener("click", (e) => {
         console.log(index)
         inputCheck = true;
         inputNumber = '';
+        total = localTotal; 
     }
     //Get user input
     operator = e.target.textContent;
