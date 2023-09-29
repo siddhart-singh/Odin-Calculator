@@ -16,6 +16,7 @@ let total = 0,
   inputCheck = true,
   placeValue = 0;
 
+
 function displayTotal(content) {
   display.textContent = content;
 }
@@ -33,10 +34,13 @@ input.addEventListener("click", (e) => {
       signCheck = true;
     }
     //Get user input
-    inputNumber = +e.target.textContent * (10**placeValue);
+    inputNumber = +e.target.textContent * 10 ** placeValue;
     placeValue++;
     //Store input in expression array
-    equation[index] = equation[index] == undefined ? inputNumber:equation[index] + inputNumber ;
+    equation[index] =
+      equation[index] == undefined
+        ? inputNumber
+        : +equation[index] + inputNumber;
     //Display Expression
     displayEquation(equation);
     compute(operator);
@@ -66,17 +70,19 @@ sign.addEventListener("click", (e) => {
 });
 
 deleteBtn.addEventListener("click", (e) => {
-    let popped;
+  let popped;
+
   //Get User input
   //Check if input type
   if (index >= 0) {
-      //Remove input
-    if (+equation[index] == NaN) {
+    //Remove input
+    if (!+equation[index]) {
       equation[index] = equation[index].slice(0, -1);
     } else {
         let popped = equation[index];
-        equation[index] = equation[index].slice(0, -1);
-        //Check if input is first index
+        equation[index] = equation[index].toString().slice(0, -1);
+        placeValue = equation[index].toString().length ;
+      //Check if input is first index
       let reverseTotalOperation;
       if (equation[index - 1] == "+") reverseTotalOperation = "-";
       else if (equation[index - 1] == "-") reverseTotalOperation = "+";
@@ -84,13 +90,14 @@ deleteBtn.addEventListener("click", (e) => {
       else if (equation[index - 1] == "/") reverseTotalOperation = "*";
       else reverseTotalOperation = "-";
 
-      console.log(reverseTotalOperation)
+      console.log(reverseTotalOperation);
       //Computer correct total
-      inputNumber = (+popped - +equation[index]);
+      inputNumber = +popped - +equation[index];
       compute(reverseTotalOperation);
       //Update total if valid
       total = localTotal;
     }
+    inputNumber = +equation[index];
     //Update equation
     if (equation[index] == "") {
       equation.pop();
