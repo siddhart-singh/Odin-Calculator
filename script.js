@@ -17,9 +17,9 @@ let total,
   inputCheck,
   placeValue;
 
-function init() {
-  total = 0;
-  operator = null;
+function init(){
+    total = 0;
+    operator = null;
   inputNumber = "";
   localTotal = 0;
   equation = [];
@@ -29,10 +29,11 @@ function init() {
   placeValue = 0;
   displayEquation(equation);
   displayTotal(total);
+  
 }
 init();
 
-clearAllBtn.addEventListener("click", init);
+clearAllBtn.addEventListener("click", init)
 
 function displayTotal(content) {
   display.textContent = content;
@@ -86,9 +87,18 @@ sign.addEventListener("click", (e) => {
   }
 });
 
-deleteBtn.addEventListener("click", (e) => {
-  let popped;
+result.addEventListener("click", () => {
+    inputCheck = false;
+    signCheck = true;
+    let finalResult = total;
+    init();
+    equation.push(finalResult);
+    displayTotal(finalResult);
+    localTotal = finalResult;
+    index = 0;
+})
 
+deleteBtn.addEventListener("click", (e) => {
   //Get User input
   //Check if input type
   if (index >= 0) {
@@ -96,9 +106,9 @@ deleteBtn.addEventListener("click", (e) => {
     if (!+equation[index]) {
       equation[index] = equation[index].slice(0, -1);
     } else {
-      let popped = equation[index];
-      equation[index] = equation[index].toString().slice(0, -1);
-      placeValue = equation[index].toString().length;
+        let popped = equation[index];
+        equation[index] = equation[index].toString().slice(0, -1);
+        placeValue = equation[index].toString().length ;
       //Check if input is first index
       let reverseTotalOperation;
       if (equation[index - 1] == "+") reverseTotalOperation = "-";
@@ -122,10 +132,10 @@ deleteBtn.addEventListener("click", (e) => {
       index--;
 
       //Prevent multiple operator inputs
-      if (!+equation[index]) {
+      if(!+equation[index]){
         signCheck = false;
         inputCheck = true;
-      } else {
+      }else{
         inputCheck = false;
         signCheck = true;
       }
@@ -144,11 +154,11 @@ function compute(operator) {
       displayTotal(localTotal);
       break;
     case "/":
-      localTotal = multiple(total, +inputNumber);
+      localTotal = divide(total, +inputNumber);
       displayTotal(localTotal);
       break;
     case "*":
-      localTotal = divide(total, +inputNumber);
+      localTotal = multiple(total, +inputNumber);
       displayTotal(localTotal);
       break;
     default:
