@@ -6,6 +6,7 @@ const input = document.querySelector(".input");
 const result = document.querySelector(".result");
 const sign = document.querySelector(".sign");
 const deleteBtn = document.querySelector(".delete");
+const clearAllBtn = document.querySelector(".clearAll");
 let total,
   operator,
   inputNumber,
@@ -26,9 +27,13 @@ function init(){
   signCheck = true;
   inputCheck = true;
   placeValue = 0;
+  displayEquation(equation);
+  displayTotal(total);
 }
-
 init();
+
+clearAllBtn.addEventListener("click", init)
+
 function displayTotal(content) {
   display.textContent = content;
 }
@@ -115,6 +120,15 @@ deleteBtn.addEventListener("click", (e) => {
       equation.pop();
       //Decrement index
       index--;
+
+      //Prevent multiple operator inputs
+      if(!+equation[index]){
+        signCheck = false;
+        inputCheck = true;
+      }else{
+        inputCheck = false;
+        signCheck = true;
+      }
     }
     displayEquation(equation);
   }
