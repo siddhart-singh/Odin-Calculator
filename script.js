@@ -5,7 +5,7 @@ const getDisplayEquation = document.querySelector(".displayEquation");
 const input = document.querySelector(".input");
 const result = document.querySelector(".result");
 const sign = document.querySelector(".sign");
-const resultBtn = document.querySelector(".result");
+const deleteBtn = document.querySelector(".delete");
 let total = 0,
   operator,
   inputNumber = "",
@@ -13,7 +13,8 @@ let total = 0,
   equation = [],
   index = null,
   signCheck = true,
-  inputCheck = true;
+  inputCheck = true,
+  placeValue = 0;
 
 function displayTotal(content) {
   display.textContent = content;
@@ -32,12 +33,14 @@ input.addEventListener("click", (e) => {
       signCheck = true;
     }
     //Get user input
-    inputNumber += e.target.textContent;
+    inputNumber = +e.target.textContent * (10**placeValue);
+    placeValue++;
     //Store input in expression array
-    equation[index] = inputNumber;
+    equation[index] = equation[index] == undefined ? inputNumber:equation[index] + inputNumber ;
     //Display Expression
     displayEquation(equation);
     compute(operator);
+    total = localTotal;
   }
 });
 
@@ -51,14 +54,10 @@ sign.addEventListener("click", (e) => {
       inputCheck = true;
       inputNumber = "";
       total = localTotal;
+      placeValue = 0;
     }
     //Get user input
     operator = e.target.textContent;
-    if (equation.length == 0g) {
-        index = index != null ? ++index : 0;
-      equation[index++] = total;
-      displayEquation(equation);
-    }
     //Store input in expression array
     equation[index] = operator;
     //Display Expression
@@ -66,15 +65,41 @@ sign.addEventListener("click", (e) => {
   }
 });
 
-resultBtn.addEventListener("click", () => {
-  operator = "";
-  inputNumber = "";
-  equation = [];
-  signCheck = true;
-  inputCheck = true;
-  index = null;
-});
+deleteBtn.addEventListener("click", (e) => {
+    let popped;
+  //Get User input
+  //Check if input type
+  if (index >= 0) {
+      //Remove input
+    if (+equation[index] == NaN) {
+      equation[index] = equation[index].slice(0, -1);
+    } else {
+        let popped = equation[index];
+        equation[index] = equation[index].slice(0, -1);
+        //Check if input is first index
+      let reverseTotalOperation;
+      if (equation[index - 1] == "+") reverseTotalOperation = "-";
+      else if (equation[index - 1] == "-") reverseTotalOperation = "+";
+      else if (equation[index - 1] == "*") reverseTotalOperation = "/";
+      else if (equation[index - 1] == "/") reverseTotalOperation = "*";
+      else reverseTotalOperation = "-";
 
+      console.log(reverseTotalOperation)
+      //Computer correct total
+      inputNumber = (+popped - +equation[index]);
+      compute(reverseTotalOperation);
+      //Update total if valid
+      total = localTotal;
+    }
+    //Update equation
+    if (equation[index] == "") {
+      equation.pop();
+      //Decrement index
+      index--;
+    }
+    displayEquation(equation);
+  }
+});
 function compute(operator) {
   switch (operator) {
     case "+":
@@ -94,7 +119,7 @@ function compute(operator) {
       displayTotal(localTotal);
       break;
     default:
-      localTotal = +inputNumber;
+      localTotal += +inputNumber;
       displayTotal(localTotal);
   }
 }
