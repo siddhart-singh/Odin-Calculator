@@ -6,17 +6,29 @@ const input = document.querySelector(".input");
 const result = document.querySelector(".result");
 const sign = document.querySelector(".sign");
 const deleteBtn = document.querySelector(".delete");
-let total = 0,
+let total,
   operator,
-  inputNumber = "",
-  localTotal = 0,
-  equation = [],
-  index = null,
-  signCheck = true,
-  inputCheck = true,
+  inputNumber,
+  localTotal,
+  equation,
+  index,
+  signCheck,
+  inputCheck,
+  placeValue;
+
+function init(){
+    total = 0;
+    operator = null;
+  inputNumber = "";
+  localTotal = 0;
+  equation = [];
+  index = null;
+  signCheck = true;
+  inputCheck = true;
   placeValue = 0;
+}
 
-
+init();
 function displayTotal(content) {
   display.textContent = content;
 }
