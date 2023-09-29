@@ -5,14 +5,15 @@ const getDisplayEquation = document.querySelector(".displayEquation");
 const input = document.querySelector(".input");
 const result = document.querySelector(".result");
 const sign = document.querySelector(".sign");
+const resultBtn = document.querySelector(".result");
 let total = 0,
   operator,
   inputNumber = "",
- localTotal = 0,
- equation = [],
- index = null,
- signCheck = true,
- inputCheck = true;
+  localTotal = 0,
+  equation = [],
+  index = null,
+  signCheck = true,
+  inputCheck = true;
 
 function displayTotal(content) {
   display.textContent = content;
@@ -25,10 +26,10 @@ function displayEquation(content) {
 input.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
     //Check for iteration and increment index
-    if (inputCheck){
-        inputCheck = false;
-        index = index !=null ? ++index : 0;
-        signCheck = true;
+    if (inputCheck) {
+      inputCheck = false;
+      index = index != null ? ++index : 0;
+      signCheck = true;
     }
     //Get user input
     inputNumber += e.target.textContent;
@@ -43,16 +44,21 @@ input.addEventListener("click", (e) => {
 sign.addEventListener("click", (e) => {
   if (e.target.classList.contains("operation")) {
     //Check for iteration and increment index
-    if (signCheck){
-        signCheck = false;
-        index = index != null ? ++index : 0;
-        console.log(index)
-        inputCheck = true;
-        inputNumber = '';
-        total = localTotal; 
+    if (signCheck) {
+      signCheck = false;
+      index = index != null ? ++index : 0;
+      console.log(index);
+      inputCheck = true;
+      inputNumber = "";
+      total = localTotal;
     }
     //Get user input
     operator = e.target.textContent;
+    if (equation.length == 0g) {
+        index = index != null ? ++index : 0;
+      equation[index++] = total;
+      displayEquation(equation);
+    }
     //Store input in expression array
     equation[index] = operator;
     //Display Expression
@@ -60,8 +66,16 @@ sign.addEventListener("click", (e) => {
   }
 });
 
-function compute(operator) {
+resultBtn.addEventListener("click", () => {
+  operator = "";
+  inputNumber = "";
+  equation = [];
+  signCheck = true;
+  inputCheck = true;
+  index = null;
+});
 
+function compute(operator) {
   switch (operator) {
     case "+":
       localTotal = add(total, +inputNumber);
