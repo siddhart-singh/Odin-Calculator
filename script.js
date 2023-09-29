@@ -35,8 +35,9 @@ init();
 
 clearAllBtn.addEventListener("click", init)
 
-function displayTotal(content) {
-  display.textContent = content;
+function displayTotal(result) {
+    if(Number.isInteger(+result)) display.textContent = result;
+    else display.textContent = +result.toFixed(4);
 }
 
 function displayEquation(content) {
