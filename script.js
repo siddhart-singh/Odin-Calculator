@@ -17,9 +17,9 @@ let total,
   inputCheck,
   placeValue;
 
-function init(){
-    total = 0;
-    operator = null;
+function init() {
+  total = 0;
+  operator = null;
   inputNumber = "";
   localTotal = 0;
   equation = [];
@@ -32,7 +32,7 @@ function init(){
 }
 init();
 
-clearAllBtn.addEventListener("click", init)
+clearAllBtn.addEventListener("click", init);
 
 function displayTotal(content) {
   display.textContent = content;
@@ -96,9 +96,9 @@ deleteBtn.addEventListener("click", (e) => {
     if (!+equation[index]) {
       equation[index] = equation[index].slice(0, -1);
     } else {
-        let popped = equation[index];
-        equation[index] = equation[index].toString().slice(0, -1);
-        placeValue = equation[index].toString().length ;
+      let popped = equation[index];
+      equation[index] = equation[index].toString().slice(0, -1);
+      placeValue = equation[index].toString().length;
       //Check if input is first index
       let reverseTotalOperation;
       if (equation[index - 1] == "+") reverseTotalOperation = "-";
@@ -122,10 +122,10 @@ deleteBtn.addEventListener("click", (e) => {
       index--;
 
       //Prevent multiple operator inputs
-      if(!+equation[index]){
+      if (!+equation[index]) {
         signCheck = false;
         inputCheck = true;
-      }else{
+      } else {
         inputCheck = false;
         signCheck = true;
       }
