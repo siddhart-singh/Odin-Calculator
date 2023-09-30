@@ -7,6 +7,7 @@ const result = document.querySelector(".result");
 const sign = document.querySelector(".sign");
 const deleteBtn = document.querySelector(".delete");
 const clearAllBtn = document.querySelector(".clearAll");
+const headerTime = document.querySelector(".time");
 let total,
   operator,
   inputNumber,
@@ -16,6 +17,8 @@ let total,
   signCheck,
   inputCheck,
   placeValue;
+
+  setInterval(updateTime(), 60*1000);
 
 function init(){
     total = 0;
@@ -184,3 +187,9 @@ function multiple(total, input) {
 function divide(total, input) {
   return total / input;
 }
+
+function updateTime(){
+  const date = new Date();
+  headerTime.textContent = `${date.getUTCHours()}:${date.getUTCMinutes()}`
+}
+

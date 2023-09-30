@@ -10,3 +10,62 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background);
+}
+
+section{
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+}
+
+.left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+
+.time{
+    font-size: 22px;
+    color: white;
+}
+
+.right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.camera-hole{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.notification img, .battery-level img{
+    width: 25px;
+    height: 25px;
+}
+
+
+.right .notification img, .battery-level img{
+    width: 30px;
+    height: 30px;
+
+}
+
