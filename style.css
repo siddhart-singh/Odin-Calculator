@@ -27,7 +27,7 @@ body {
 }
 
 section {
-  max-width: 350px;
+  max-width: 300px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@ section {
 }
 
 .time {
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   font-family: "Onest", sans-serif;
   font-weight: 500;
@@ -79,8 +79,8 @@ section {
 
 .notification img,
 .battery-level img {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 
@@ -168,6 +168,6 @@ section {
 }
 
 .navigation img{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
