@@ -27,18 +27,18 @@ body {
 }
 
 section {
-  max-width: 450px;
+  max-width: 400px;
   margin: auto;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  padding: 8px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 8px;
 }
 
 .left {
@@ -83,10 +83,23 @@ section {
 .calculator {
   display: flex;
   flex-direction: column;
+  padding: 8px 16px;
 }
 
+.calculator button {
+  font-size: 18px;
+
+  font-family: 'Martian Mono', monospace;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  color: var(--text);
+}
+
+
+
 .display-section {
-  height: 200px;
+  height: 150px;
   padding: 8px 16px;
   display: flex;
   flex-direction: column;
@@ -94,6 +107,7 @@ section {
   align-items: flex-end;
   font-family: "Martian Mono", monospace;
   color: var(--text);
+  border-bottom: 1px solid var(--lighter-text);
 }
 
 .displayEquation {
@@ -101,4 +115,39 @@ section {
 }
 .display {
   font-size: 32px;
+}
+
+.input {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.num {
+  flex: 1;
+  min-width: 33%;
+  height: 50px;
+}
+
+.sign {
+  display: flex;
+  flex-direction: column;
+  min-width: 33%;
+}
+
+.operation {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+}
+
+.actions button {
+  flex: 1;
+  height: 50px;
 }
