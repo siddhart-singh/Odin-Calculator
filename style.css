@@ -32,13 +32,15 @@ section {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  padding: 8px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 4px 8px;
+  background-color: rgb(0,0,0,0.2);
+
 }
 
 .left {
@@ -68,17 +70,19 @@ section {
   background-color: black;
 }
 
-.notification img,
-.battery-level img {
-  width: 20px;
-  height: 20px;
+.notification{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
 
-.right .notification img,
+.notification img,
 .battery-level img {
   width: 25px;
   height: 25px;
 }
+
 
 .calculator {
   display: flex;
@@ -150,4 +154,17 @@ section {
 .actions button {
   flex: 1;
   height: 50px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.205);
+}
+
+.navigation img{
+    width: 20px;
+    height: 20px;
 }
