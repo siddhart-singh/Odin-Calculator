@@ -1,71 +1,104 @@
-:root{
-    --background: #4A55A2;
-    --lighter-background: #7895CB;
-    --lighter-text: #A0BFE0;
-    --text: #C5DFF8;
+@import url("https://fonts.googleapis.com/css2?family=Croissant+One&family=Dela+Gothic+One&family=Lora:wght@400;500;600;700&family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap");
+
+/* font-family: 'Croissant One', cursive;
+font-family: 'Dela Gothic One', cursive;
+font-family: 'Lora', serif;
+font-family: 'Martian Mono', monospace;
+font-family: 'Onest', sans-serif;
+font-family: 'Work Sans', sans-serif; */
+
+:root {
+  --background: #4a55a2;
+  --lighter-background: #7895cb;
+  --lighter-text: #a0bfe0;
+  --text: #c5dff8;
 }
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--background);
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
 }
 
-section{
-    max-width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
+section {
+  max-width: 450px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
 }
 
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 8px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
 }
 
-.left{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 4px;
+.left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
 }
 
-.time{
-    font-size: 22px;
-    color: white;
+.time {
+  font-size: 16px;
+  color: white;
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
 }
 
-.right{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.camera-hole{
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: black;
+.camera-hole {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: black;
 }
 
-.notification img, .battery-level img{
-    width: 25px;
-    height: 25px;
+.notification img,
+.battery-level img {
+  width: 20px;
+  height: 20px;
 }
 
-
-.right .notification img, .battery-level img{
-    width: 30px;
-    height: 30px;
-
+.right .notification img,
+.battery-level img {
+  width: 25px;
+  height: 25px;
 }
 
+.calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-section {
+  height: 200px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-family: "Martian Mono", monospace;
+  color: var(--text);
+}
+
+.displayEquation {
+  font-size: 36px;
+}
+.display {
+  font-size: 32px;
+}
