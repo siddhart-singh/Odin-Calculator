@@ -30,17 +30,21 @@ function init(){
   signCheck = true;
   inputCheck = true;
   placeValue = 0;
-  displayEquation(equation);
-  displayTotal(total);
+
   
 }
 init();
 
-clearAllBtn.addEventListener("click", init)
+clearAllBtn.addEventListener("click", () =>{
+    init();
+  displayEquation(equation);
+  displayTotal(total);
+})
 
-function displayTotal(result) {
-    if(Number.isInteger(+result)) display.textContent = result;
-    else display.textContent = +result.toFixed(4);
+function displayTotal(content) {
+    if(Number.isInteger(+content)) display.textContent = content;
+    else display.textContent = +content.toFixed(4);
+    
 }
 
 function displayEquation(content) {
@@ -91,13 +95,16 @@ sign.addEventListener("click", (e) => {
   }
 });
 
-result.addEventListener("click", () => {
+result.addEventListener("click", (e) => {
+  e.stopPropagation();
     inputCheck = false;
     signCheck = true;
     let finalResult = total;
     init();
+    console.log(total, finalResult);
     equation.push(finalResult);
     displayTotal(finalResult);
+    displayEquation(equation)
     localTotal = finalResult;
     index = 0;
 })
