@@ -1,4 +1,7 @@
-
-.display{
-    padding: 8px 16px;
+:root{
+    --background: #4A55A2;
+    --lighter-background: #7895CB;
+    --lighter-text: #A0BFE0;
+    --text: #C5DFF8;
 }
+
