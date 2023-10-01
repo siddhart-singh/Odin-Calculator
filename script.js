@@ -83,7 +83,6 @@ sign.addEventListener("click", (e) => {
       inputCheck = true;
       inputNumber = "";
       total = localTotal;
-      placeValue = 0;
     }
     //Get user input
     operator = e.target.textContent;
@@ -157,7 +156,7 @@ deleteBtn.addEventListener("click", (e) => {
 function compute(operator) {
   switch (operator) {
     case "+":
-      localTotal = add(total, +inputNumber);
+      localTotal = add(total, +equation[index]);
       displayTotal(localTotal);
       break;
     case "-":
@@ -178,20 +177,20 @@ function compute(operator) {
   }
 }
 
-function add(total, input) {
-  return total + input;
+function add(total, inputNum) {
+  return total + inputNum;
 }
 
-function substract(total, input) {
-  return total - input;
+function substract(total, inputNum) {
+  return total - inputNum;
 }
 
-function multiple(total, input) {
-  return total * input;
+function multiple(total, inputNum) {
+  return total * inputNum;
 }
 
-function divide(total, input) {
-  return total / input;
+function divide(total, inputNum) {
+  return total / inputNum;
 }
 
 function updateTime(){
