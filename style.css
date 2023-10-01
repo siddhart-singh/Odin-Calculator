@@ -42,6 +42,7 @@ section {
   box-shadow: 0px 0px 0px 7px rgb(50, 45, 45);
   background-color: #7895cb;
   transform: scale(0.9);
+ 
 }
 
 section::before {
@@ -71,7 +72,7 @@ section::after {
 }
 
 .hidden {
-  background-color: rgb(35, 35, 35);
+  background-color: rgb(256, 256,256);
 }
 
 .dead{
@@ -81,10 +82,10 @@ section::after {
 .battery-dead {
   position: absolute;
   top: 37.5%;
-  right: 30%;
+  right: 32.5%;
 }
 
-.battery-hidden {
+.battery-hidden, .charger-hidden {
   visibility: hidden;
 }
 
@@ -258,6 +259,17 @@ button {
   height: 2px;
   border-radius: 500px;
   background-color: white;
+}
+
+.charger{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.charger img{
+  transform: scale(0.9);
 }
 
 footer {

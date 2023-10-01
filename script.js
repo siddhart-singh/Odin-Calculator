@@ -13,6 +13,8 @@ const headerTime = document.querySelector(".time");
 const batteryIcon = document.querySelector(".battery-icon");
 const batteryDead = document.querySelector(".battery-dead");
 const popNotification = document.querySelector(".pop-notification");
+const charger = document.querySelector(".charger");
+const chargerBtn = document.querySelector(".charger-switch");
 let total,
   operator,
   operand,
@@ -24,15 +26,10 @@ let total,
   inputCheck,
   placeValue,
   resultCheck,
-  battery;
+  battery,
+  chargerSwitch,
+  chargerStatus;
 
-battery = [
-  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/19CC97/full-battery.png"
-  alt="full-battery" />`,
-  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FFC000/low-battery.png" alt="low-battery"/>`,
-  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FF0000/empty-battery.png" alt="empty-battery"/>`,
-  ,
-];
 setInterval(updateTime(), 60 * 1000);
 
 function init() {
@@ -46,6 +43,20 @@ function init() {
   inputCheck = true;
   resultCheck = false;
   placeValue = 0;
+  battery = [
+    `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/19CC97/full-battery.png"
+    alt="full-battery" />`,
+    `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FFC000/low-battery.png" alt="low-battery"/>`,
+    `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FF0000/empty-battery.png" alt="empty-battery"/>`,
+    ,
+  ];
+  chargerSwitch = [
+    `<img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/switch-off.png" alt="switch-off"/>`,
+    `<img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/switch-on.png" alt="switch-on"/>`,
+  ];
+  section.classList.add("dead");
+  container.classList.add("container-hidden");
+  chargerStatus = false;
 }
 init();
 
@@ -234,35 +245,17 @@ function updateTime() {
     .padStart(2, "0")}:${date.getUTCMinutes().toString().padStart(2, "0")}`;
 }
 
+let charging = [];
 function updateBatteryIcon() {
-  section.classList.add("dead");
-  container.classList.add("container-hidden");
-  setTimeout(() => {
+  charging[0] = setTimeout(() => {
     section.classList.remove("dead");
-    section.classList.add("hidden");
-    setTimeout(() => {
-      section.classList.remove("hidden");
-      container.classList.remove("container-hidden");
+    if (!chargerStatus) section.classList.add("hidden");
+    charger[1] = setTimeout(() => {
       batteryIcon.innerHTML = battery[0];
       displayPopNotification("Battery: 100%");
-      for (let i = 1; i <= 3; i++) {
-        if (i != 3) {
-          setTimeout(() => {
-            batteryIcon.innerHTML = battery[i];
-            displayPopNotification(`Battery: ${100 / (i ** i + 1)}%`);
-          }, 7 * i * 1000);
-        } else {
-          setTimeout(() => {
-            section.classList.add("hidden");
-            container.classList.add("container-hidden");
-            batteryDead.classList.remove("battery-hidden");
-            setTimeout(() => {
-              batteryDead.classList.add("battery-hidden");
-              section.classList.add("dead");
-            }, 4 * 1000);
-          }, 7 * i * 1000);
-        }
-      }
+      section.classList.remove("hidden");
+      container.classList.remove("container-hidden");
+      if (!chargerStatus) discharge();
     }, 2000);
   }, 2000);
 }
@@ -272,5 +265,54 @@ function displayPopNotification(message) {
   popNotification.classList.remove("pop-hidden");
   setTimeout(() => popNotification.classList.add("pop-hidden"), 2.5 * 1000);
 }
+
+let discharging = [];
+function discharge() {
+  discharging[0] = setTimeout(() => {
+    for (let i = 1; i <= 3; i++) {
+      if (i != 3) {
+        discharging[1] = setTimeout(() => {
+          batteryIcon.innerHTML = battery[i];
+          displayPopNotification(`Battery: ${100 / (i ** i + 1)}%`);
+        }, 7 * i * 1000);
+      } else {
+        discharging[2] = setTimeout(() => {
+          section.classList.add("hidden");
+          container.classList.add("container-hidden");
+          batteryDead.classList.remove("battery-hidden");
+          discharging[3] = setTimeout(() => {
+            batteryDead.classList.add("battery-hidden");
+            section.classList.add("dead");
+            charger.classList.remove("charger-hidden");
+          }, 4 * 1000);
+        }, 7 * i * 1000);
+      }
+    }
+  }, 0);
+}
+
+chargerBtn.addEventListener("click", (e) => {
+  if ((chargerBtn.innerHTML = e.target.getAttribute("alt") == "switch-off")) {
+    chargerBtn.innerHTML = chargerSwitch[1];
+    for (let charger of charging) {
+      clearTimeout(charger);
+    }
+    for (let discharge of discharging) {
+      clearTimeout(discharge);
+    }
+    chargerStatus = true;
+    updateBatteryIcon();
+  } else {
+    for (let charger of charging) {
+      clearTimeout(charger);
+    }
+    for (let discharge of discharging) {
+      clearTimeout(discharge);
+    }
+    chargerBtn.innerHTML = chargerSwitch[0];
+    chargerStatus = false;
+    discharge();
+  }
+});
 
 updateBatteryIcon();
