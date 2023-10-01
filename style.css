@@ -48,7 +48,7 @@ section::before {
   position: absolute;
   width: 5px;
   height: 75px;
-  right: -5%;
+  right: -5.5%;
   top: 15%;
   background-color: rgb(47, 124, 255);
   z-index: 1;
@@ -59,7 +59,7 @@ section::after {
   position: absolute;
   width: 5px;
   height: 50px;
-  right: -5%;
+  right: -5.5%;
   top: 40%;
   background-color: rgb(255, 102, 47);
   z-index: 1;

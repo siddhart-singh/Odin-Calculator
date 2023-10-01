@@ -60,17 +60,16 @@ input.addEventListener("click", (e) => {
       signCheck = true;
     }
     //Get user input
-    inputNumber = +e.target.textContent * 10 ** placeValue;
-    placeValue++;
+    inputNumber = e.target.textContent;
     //Store input in expression array
     equation[index] =
       equation[index] == undefined
         ? inputNumber
-        : +equation[index] + inputNumber;
+        : equation[index] += inputNumber;
     //Display Expression
     displayEquation(equation);
     compute(operator);
-    total = localTotal;
+    // total = localTotal;
   }
 });
 
@@ -174,7 +173,7 @@ function compute(operator) {
       displayTotal(localTotal);
       break;
     default:
-      localTotal += +inputNumber;
+      localTotal = +equation[index];
       displayTotal(localTotal);
   }
 }
