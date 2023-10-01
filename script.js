@@ -235,28 +235,42 @@ function updateTime() {
 }
 
 function updateBatteryIcon() {
-  batteryIcon.innerHTML = battery[0];
-  displayPopNotification("Battery: 100%");
-  for (let i = 1; i <= 3; i++) {
-    if (i != 3) {
-      setTimeout(() => {
-        batteryIcon.innerHTML = battery[i];
-       displayPopNotification(`Battery: ${100/(i ** i + 1)}%`);
-      }, 5 * i * 1000);
-    } else {
-      setTimeout(() => {
-        section.classList.add("hidden");
-        container.classList.add("container-hidden");
-        batteryDead.classList.remove("battery-hidden");
-        setTimeout(
-          () => {batteryDead.classList.add("battery-hidden")
-          section.classList.add("dead")
-        },
-          4 * 1000
-        );
-      }, 5 * i * 1000);
+  section.classList.add("dead");
+  container.classList.add("container-hidden");
+  setTimeout(() => {
+    section.classList.remove("dead");
+    section.classList.add("hidden");
+    setTimeout(() => {
+    section.classList.remove("hidden");
+    container.classList.remove("container-hidden");
+    batteryIcon.innerHTML = battery[0];
+    displayPopNotification("Battery: 100%");
+    for (let i = 1; i <= 3; i++) {
+      if (i != 3) {
+        setTimeout(() => {
+          batteryIcon.innerHTML = battery[i];
+         displayPopNotification(`Battery: ${100/(i ** i + 1)}%`);
+        }, 6 * i * 1000);
+      } else {
+        setTimeout(() => {
+          section.classList.add("hidden");
+          container.classList.add("container-hidden");
+          batteryDead.classList.remove("battery-hidden");
+          setTimeout(
+            () => {batteryDead.classList.add("battery-hidden")
+            section.classList.add("dead")
+          },
+            4 * 1000
+          );
+        }, 6 * i * 1000);
+      }
     }
-  }
+  },1000)
+  
+
+    },1000)
+    
+
 }
 
 function displayPopNotification(message){
