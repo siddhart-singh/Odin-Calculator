@@ -10,6 +10,7 @@ const clearAllBtn = document.querySelector(".clearAll");
 const headerTime = document.querySelector(".time");
 let total,
   operator,
+  operand,
   inputNumber,
   localTotal,
   equation,
@@ -68,7 +69,7 @@ input.addEventListener("click", (e) => {
         : equation[index] += inputNumber;
     //Display Expression
     displayEquation(equation);
-    compute(operator);
+    compute(operator, equation[index]);
     // total = localTotal;
   }
 });
@@ -118,21 +119,22 @@ deleteBtn.addEventListener("click", (e) => {
     } else {
         let popped = equation[index];
         equation[index] = equation[index].toString().slice(0, -1);
-        placeValue = equation[index].toString().length ;
-      //Check if input is first index
-      let reverseTotalOperation;
-      if (equation[index - 1] == "+") reverseTotalOperation = "-";
-      else if (equation[index - 1] == "-") reverseTotalOperation = "+";
-      else if (equation[index - 1] == "*") reverseTotalOperation = "/";
+        // placeValue = equation[index].toString().length ;
+        //Check if input is first index
+        let reverseTotalOperation;
+        if (equation[index - 1] == "+") reverseTotalOperation = "-";
+        else if (equation[index - 1] == "-") reverseTotalOperation = "+";
+        else if (equation[index - 1] == "*") reverseTotalOperation = "/";
       else if (equation[index - 1] == "/") reverseTotalOperation = "*";
       else reverseTotalOperation = "-";
 
-      console.log(reverseTotalOperation);
       //Computer correct total
-      inputNumber = +popped - +equation[index];
-      compute(reverseTotalOperation);
-      //Update total if valid
+      let reverseOperand = +popped - +equation[index];
       total = localTotal;
+      compute(reverseTotalOperation, reverseOperand);
+      total = localTotal;
+      operator = "";
+      //Update total if valid
     }
     inputNumber = +equation[index];
     //Update equation
@@ -153,22 +155,22 @@ deleteBtn.addEventListener("click", (e) => {
     displayEquation(equation);
   }
 });
-function compute(operator) {
+function compute(operator, operand) {
   switch (operator) {
     case "+":
-      localTotal = add(total, +equation[index]);
+      localTotal = add(total, +operand);
       displayTotal(localTotal);
       break;
     case "-":
-      localTotal = substract(total, +inputNumber);
+      localTotal = substract(total, +operand);
       displayTotal(localTotal);
       break;
     case "/":
-      localTotal = divide(total, +inputNumber);
+      localTotal = divide(total, +operand);
       displayTotal(localTotal);
       break;
     case "*":
-      localTotal = multiple(total, +inputNumber);
+      localTotal = multiple(total, +operand);
       displayTotal(localTotal);
       break;
     default:
