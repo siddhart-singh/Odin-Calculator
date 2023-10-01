@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Croissant+One&family=Dela+Gothic+One&family=Lora:wght@400;500;600;700&family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Dela+Gothic+One&family=Lora:wght@400;500;600;700&family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Nabla&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap');
 
 /* font-family: 'Croissant One', cursive;
 font-family: 'Dela Gothic One', cursive;
 font-family: 'Lora', serif;
 font-family: 'Martian Mono', monospace;
 font-family: 'Onest', sans-serif;
-font-family: 'Work Sans', sans-serif; */
+font-family: 'Work Sans', sans-serif; 
+font-family: 'Nabla', cursive;*/
 
 :root {
   --background: #4a55a2;
@@ -27,6 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 section {
@@ -149,6 +151,7 @@ section::after{
   color: var(--text);
   border-bottom: 1px solid var(--lighter-text);
   gap:16px;
+  overflow: hidden;
 }
 
 .displayEquation {
@@ -211,4 +214,8 @@ section::after{
 button.clicked {
     background-color: var(--background);
     color: var(--lighter-text);
+}
+
+footer{
+    font-family: 'Nabla', cursive;
 }

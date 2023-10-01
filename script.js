@@ -111,7 +111,6 @@ result.addEventListener("click", (e) => {
 })
 
 deleteBtn.addEventListener("click", (e) => {
-  pressAnimation(e);
   //Get User input
   //Check if input type
   if (index >= 0) {
