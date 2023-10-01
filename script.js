@@ -121,24 +121,18 @@ deleteBtn.addEventListener("click", (e) => {
       let reverseTotalOperation;
       let reverseOperand;
       total = localTotal;
-      if (equation[index - 1] == "+" || !equation[index - 1]) {
-        reverseTotalOperation = "-";
+      if (equation[index - 1] == "+" || equation[index - 1] == "-" || !equation[index - 1]) {
+        reverseTotalOperation = equation[index - 1] == "-" ? "+" : "-";
         reverseOperand = +popped - +equation[index];
-        console.log(reverseOperand);
-        compute(reverseTotalOperation, reverseOperand);
-      } else if (equation[index - 1] == "-") {
-        reverseTotalOperation = "+";
-        reverseOperand = +popped - +equation[index];
-        compute(reverseTotalOperation, reverseOperand);
-      } else if (equation[index - 1] == "*") {
-        reverseTotalOperation = "/";
+      } 
+      else if (equation[index - 1] == "*" || equation[index - 1] == "/") {
+        reverseTotalOperation = equation[index - 1] == "*" ? "/" : "*";
         reverseOperand = +equation[index]
           ? +popped / +equation[index]
           : +popped;
-        console.log(reverseOperand);
-        compute(reverseTotalOperation, reverseOperand);
-      } else if (equation[index - 1] == "/") reverseTotalOperation = "*";
+      }
 
+      compute(reverseTotalOperation, reverseOperand);
       //Computer correct total
       total = localTotal;
       operator = "";
