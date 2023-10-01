@@ -252,7 +252,7 @@ function updateBatteryIcon() {
           () => {batteryDead.classList.add("battery-hidden")
           section.classList.add("dead")
         },
-          2 * 1000
+          4 * 1000
         );
       }, 5 * i * 1000);
     }
