@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Dela+Gothic+One&family=Lora:wght@400;500;600;700&family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Nabla&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Croissant+One&family=Dela+Gothic+One&family=Lora:wght@400;500;600;700&family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Nabla&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap");
 
 /* font-family: 'Croissant One', cursive;
 font-family: 'Dela Gothic One', cursive;
@@ -32,7 +32,7 @@ body {
 }
 
 section {
-    position: relative;
+  position: relative;
   width: 300px;
   margin: auto;
   display: flex;
@@ -43,26 +43,30 @@ section {
   background-color: #7895cb;
 }
 
-section::before{
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 75px;
-    right: -5%;
-    top: 15%;
-    background-color: rgb(47, 124, 255);
-    z-index: 1;
+section::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 75px;
+  right: -5%;
+  top: 15%;
+  background-color: rgb(47, 124, 255);
+  z-index: 1;
 }
 
-section::after{
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 50px;
-    right: -5%;
-    top: 40%;
-    background-color: rgb(255, 102, 47);
-    z-index: 1;
+section::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 50px;
+  right: -5%;
+  top: 40%;
+  background-color: rgb(255, 102, 47);
+  z-index: 1;
+}
+
+button {
+  cursor: pointer;
 }
 
 .header {
@@ -70,8 +74,7 @@ section::after{
   align-items: center;
   justify-content: space-between;
   padding: 4px 8px;
-  background-color: rgb(0,0,0,0.55);
-
+  background-color: rgb(0, 0, 0, 0.55);
 }
 
 .left {
@@ -94,10 +97,10 @@ section::after{
   align-items: center;
 }
 
-.battery-level{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.battery-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .camera-hole {
@@ -107,18 +110,17 @@ section::after{
   background-color: black;
 }
 
-.notification{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 }
 
-.notification img{
+.notification img {
   width: 15px;
   height: 15px;
 }
-
 
 .calculator {
   display: flex;
@@ -130,15 +132,24 @@ section::after{
 
 .calculator button {
   font-size: 18px;
-    
-  font-family: 'Martian Mono', monospace;
+
+  font-family: "Martian Mono", monospace;
   background-color: inherit;
   border: none;
   outline: none;
   color: var(--text);
 }
 
+.calculator button:hover {
+  background-color: #c5dff8;
+  color: #7895cb;
+  box-shadow: 0px 2px 4px rgb(0,0,0,0.1);
+}
 
+.calculator button:active {
+  background-color: var(--lighter-text);
+  box-shadow: 0px 1px 2px rgb(0,0,0,0.3);
+}
 
 .display-section {
   height: 200px;
@@ -150,7 +161,7 @@ section::after{
   font-family: "Martian Mono", monospace;
   color: var(--text);
   border-bottom: 1px solid var(--lighter-text);
-  gap:16px;
+  gap: 16px;
   overflow: hidden;
 }
 
@@ -196,26 +207,20 @@ section::after{
   height: 50px;
 }
 
-.navigation{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 8px;
-
+.navigation {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 8px;
 }
 
-.navigation span{
-    width: 50%;
-    height: 2px;
-    border-radius: 500px;
-    background-color: white;
+.navigation span {
+  width: 50%;
+  height: 2px;
+  border-radius: 500px;
+  background-color: white;
 }
 
-button.clicked {
-    background-color: var(--background);
-    color: var(--lighter-text);
-}
-
-footer{
-    font-family: 'Nabla', cursive;
+footer {
+  font-family: "Nabla", cursive;
 }

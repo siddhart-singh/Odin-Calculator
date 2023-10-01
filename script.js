@@ -200,14 +200,3 @@ function updateTime(){
   headerTime.textContent = `${(date.getUTCHours()).toString().padStart(2,"0")}:${date.getUTCMinutes().toString().padStart(2,"0")}`
 }
 
-window.addEventListener("mousedown", (e) => {
-  if(e.target.nodeName == "BUTTON"){
-    e.target.classList.add("clicked");
-  }
-})
-
-window.addEventListener("mouseup", (e) => {
-  if(e.target.nodeName == "BUTTON"){
-    e.target.classList.remove("clicked");
-  }
-})
