@@ -224,3 +224,8 @@ button {
 footer {
   font-family: "Nabla", cursive;
 }
+
+.display-result{
+    font-size: 44px;
+    font-weight:500;
+}
