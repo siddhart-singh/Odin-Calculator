@@ -1,5 +1,7 @@
 "use strict";
 
+const section = document.querySelector("section");
+const container = document.querySelector(".container");
 const display = document.querySelector(".display");
 const getDisplayEquation = document.querySelector(".displayEquation");
 const input = document.querySelector(".input");
@@ -8,6 +10,9 @@ const sign = document.querySelector(".sign");
 const deleteBtn = document.querySelector(".delete");
 const clearAllBtn = document.querySelector(".clearAll");
 const headerTime = document.querySelector(".time");
+const batteryIcon = document.querySelector(".battery-icon");
+const batteryDead = document.querySelector(".battery-dead");
+const popNotification = document.querySelector(".pop-notification");
 let total,
   operator,
   operand,
@@ -18,8 +23,16 @@ let total,
   signCheck,
   inputCheck,
   placeValue,
-  resultCheck;
+  resultCheck,
+  battery;
 
+battery = [
+  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/19CC97/full-battery.png"
+  alt="full-battery" />`,
+  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FFC000/low-battery.png" alt="low-battery"/>`,
+  `<img width="64" height="64" src="https://img.icons8.com/glyph-neue/64/FF0000/empty-battery.png" alt="empty-battery"/>`,
+  ,
+];
 setInterval(updateTime(), 60 * 1000);
 
 function init() {
@@ -79,9 +92,9 @@ input.addEventListener("click", (e) => {
 sign.addEventListener("click", (e) => {
   if (e.target.classList.contains("operation")) {
     //Check for iteration and increment index
-    console.log(resultCheck)
+    console.log(resultCheck);
     if (resultCheck == true) {
-      console.log(1)
+      console.log(1);
       display.classList.remove("display-result");
       equation[index] = localTotal.toString();
       console.log(equation);
@@ -220,3 +233,36 @@ function updateTime() {
     .toString()
     .padStart(2, "0")}:${date.getUTCMinutes().toString().padStart(2, "0")}`;
 }
+
+function updateBatteryIcon() {
+  batteryIcon.innerHTML = battery[0];
+  displayPopNotification("Battery: 100%");
+  for (let i = 1; i <= 3; i++) {
+    if (i != 3) {
+      setTimeout(() => {
+        batteryIcon.innerHTML = battery[i];
+       displayPopNotification(`Battery: ${100/(i ** i + 1)}%`);
+      }, 5 * i * 1000);
+    } else {
+      setTimeout(() => {
+        section.classList.add("hidden");
+        container.classList.add("container-hidden");
+        batteryDead.classList.remove("battery-hidden");
+        setTimeout(
+          () => {batteryDead.classList.add("battery-hidden")
+          section.classList.add("dead")
+        },
+          2 * 1000
+        );
+      }, 5 * i * 1000);
+    }
+  }
+}
+
+function displayPopNotification(message){
+  popNotification.textContent = message;
+  popNotification.classList.remove("pop-hidden");
+  setTimeout(() => popNotification.classList.add("pop-hidden"), 2 * 1000);
+}
+
+updateBatteryIcon();
