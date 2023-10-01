@@ -250,7 +250,7 @@ function updateBatteryIcon() {
           setTimeout(() => {
             batteryIcon.innerHTML = battery[i];
             displayPopNotification(`Battery: ${100 / (i ** i + 1)}%`);
-          }, 5 * i * 1000);
+          }, 7 * i * 1000);
         } else {
           setTimeout(() => {
             section.classList.add("hidden");
@@ -260,7 +260,7 @@ function updateBatteryIcon() {
               batteryDead.classList.add("battery-hidden");
               section.classList.add("dead");
             }, 4 * 1000);
-          }, 5 * i * 1000);
+          }, 7 * i * 1000);
         }
       }
     }, 2000);
