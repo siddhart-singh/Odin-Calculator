@@ -28,7 +28,7 @@ let total,
   resultCheck,
   battery,
   chargerSwitch,
-  chargerStatus;
+  chargerStatus = false;
 
 setInterval(updateTime(), 60 * 1000);
 
@@ -54,9 +54,6 @@ function init() {
     `<img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/switch-off.png" alt="switch-off"/>`,
     `<img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/switch-on.png" alt="switch-on"/>`,
   ];
-  section.classList.add("dead");
-  container.classList.add("container-hidden");
-  chargerStatus = false;
 }
 init();
 
@@ -246,6 +243,8 @@ function updateTime() {
 }
 
 let charging = [];
+section.classList.add("dead");
+container.classList.add("container-hidden");
 function updateBatteryIcon() {
   charging[0] = setTimeout(() => {
     section.classList.remove("dead");
