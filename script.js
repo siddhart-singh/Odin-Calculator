@@ -274,7 +274,7 @@ function discharge() {
         discharging[1] = setTimeout(() => {
           batteryIcon.innerHTML = battery[i];
           displayPopNotification(`Battery: ${100 / (i ** i + 1)}%`);
-        }, 7 * i * 1000);
+        }, 5 * i * 1000);
       } else {
         discharging[2] = setTimeout(() => {
           section.classList.add("hidden");
@@ -285,7 +285,7 @@ function discharge() {
             section.classList.add("dead");
             charger.classList.remove("charger-hidden");
           }, 4 * 1000);
-        }, 7 * i * 1000);
+        }, 5 * i * 1000);
       }
     }
   }, 0);

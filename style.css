@@ -39,10 +39,10 @@ section {
   flex-direction: column;
   border: 3px solid black;
   border-radius: 20px;
-  box-shadow: 0px 0px 0px 7px rgb(50, 45, 45);
+  box-shadow: 0px 0px 0px 7px rgb(50, 45, 45),
+    0px 2.4rem 4.2rem rgba(0, 0, 0, 0.1);
   background-color: #7895cb;
   transform: scale(0.9);
- 
 }
 
 section::before {
@@ -72,11 +72,11 @@ section::after {
 }
 
 .hidden {
-  background-color: rgb(256, 256,256);
+  background-color: rgb(256, 256, 256);
 }
 
-.dead{
-    background-color: rgb(0, 0, 0);
+.dead {
+  background-color: rgb(0, 0, 0);
 }
 
 .battery-dead {
@@ -85,7 +85,8 @@ section::after {
   right: 32.5%;
 }
 
-.battery-hidden, .charger-hidden {
+.battery-hidden,
+.charger-hidden {
   visibility: hidden;
 }
 
@@ -105,10 +106,9 @@ button {
   font-family: "Onest", sans-serif;
 }
 
-.pop-hidden{
-    visibility: hidden;
+.pop-hidden {
+  visibility: hidden;
 }
-
 
 .header {
   display: flex;
@@ -261,14 +261,14 @@ button {
   background-color: white;
 }
 
-.charger{
+.charger {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
-.charger img{
+.charger img {
   transform: scale(0.9);
 }
 
