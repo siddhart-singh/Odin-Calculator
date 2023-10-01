@@ -103,13 +103,15 @@ result.addEventListener("click", (e) => {
     init();
     console.log(total, finalResult);
     equation.push(finalResult);
-    displayTotal(finalResult);
+    // displayTotal(finalResult);
     displayEquation(equation)
     localTotal = finalResult;
     index = 0;
+    placeValue = finalResult.toString().length;
 })
 
 deleteBtn.addEventListener("click", (e) => {
+  pressAnimation(e);
   //Get User input
   //Check if input type
   if (index >= 0) {
@@ -183,7 +185,6 @@ function add(total, input) {
 }
 
 function substract(total, input) {
-  if (!total) return input;
   return total - input;
 }
 
@@ -197,6 +198,17 @@ function divide(total, input) {
 
 function updateTime(){
   const date = new Date();
-  headerTime.textContent = `${date.getUTCHours()}:${date.getUTCMinutes()}`
+  headerTime.textContent = `${(date.getUTCHours()).toString().padStart(2,"0")}:${date.getUTCMinutes().toString().padStart(2,"0")}`
 }
 
+window.addEventListener("mousedown", (e) => {
+  if(e.target.nodeName == "BUTTON"){
+    e.target.classList.add("clicked");
+  }
+})
+
+window.addEventListener("mouseup", (e) => {
+  if(e.target.nodeName == "BUTTON"){
+    e.target.classList.remove("clicked");
+  }
+})
