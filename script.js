@@ -19,11 +19,11 @@ let total,
   inputCheck,
   placeValue;
 
-  setInterval(updateTime(), 60*1000);
+setInterval(updateTime(), 60 * 1000);
 
-function init(){
-    total = 0;
-    operator = null;
+function init() {
+  total = 0;
+  operator = null;
   inputNumber = "";
   localTotal = 0;
   equation = [];
@@ -31,21 +31,18 @@ function init(){
   signCheck = true;
   inputCheck = true;
   placeValue = 0;
-
-  
 }
 init();
 
-clearAllBtn.addEventListener("click", () =>{
-    init();
+clearAllBtn.addEventListener("click", () => {
+  init();
   displayEquation(equation);
   displayTotal(total);
-})
+});
 
 function displayTotal(content) {
-    if(Number.isInteger(+content)) display.textContent = content;
-    else display.textContent = +content.toFixed(4);
-    
+  if (Number.isInteger(+content)) display.textContent = content;
+  else display.textContent = +content.toFixed(4);
 }
 
 function displayEquation(content) {
@@ -66,7 +63,7 @@ input.addEventListener("click", (e) => {
     equation[index] =
       equation[index] == undefined
         ? inputNumber
-        : equation[index] += inputNumber;
+        : (equation[index] += inputNumber);
     //Display Expression
     displayEquation(equation);
     compute(operator, equation[index]);
@@ -96,18 +93,18 @@ sign.addEventListener("click", (e) => {
 
 result.addEventListener("click", (e) => {
   e.stopPropagation();
-    inputCheck = false;
-    signCheck = true;
-    let finalResult = total;
-    init();
-    console.log(total, finalResult);
-    equation.push(finalResult);
-    // displayTotal(finalResult);
-    displayEquation(equation)
-    localTotal = finalResult;
-    index = 0;
-    placeValue = finalResult.toString().length;
-})
+  inputCheck = false;
+  signCheck = true;
+  let finalResult = total;
+  init();
+  console.log(total, finalResult);
+  equation.push(finalResult);
+  // displayTotal(finalResult);
+  displayEquation(equation);
+  localTotal = finalResult;
+  index = 0;
+  placeValue = finalResult.toString().length;
+});
 
 deleteBtn.addEventListener("click", (e) => {
   //Get User input
@@ -117,21 +114,32 @@ deleteBtn.addEventListener("click", (e) => {
     if (!+equation[index]) {
       equation[index] = equation[index].slice(0, -1);
     } else {
-        let popped = equation[index];
-        equation[index] = equation[index].toString().slice(0, -1);
-        // placeValue = equation[index].toString().length ;
-        //Check if input is first index
-        let reverseTotalOperation;
-        if (equation[index - 1] == "+") reverseTotalOperation = "-";
-        else if (equation[index - 1] == "-") reverseTotalOperation = "+";
-        else if (equation[index - 1] == "*") reverseTotalOperation = "/";
-      else if (equation[index - 1] == "/") reverseTotalOperation = "*";
-      else reverseTotalOperation = "-";
+      let popped = equation[index];
+      equation[index] = equation[index].toString().slice(0, -1);
+      // placeValue = equation[index].toString().length ;
+      //Check if input is first index
+      let reverseTotalOperation;
+      let reverseOperand;
+      total = localTotal;
+      if (equation[index - 1] == "+" || !equation[index - 1]) {
+        reverseTotalOperation = "-";
+        reverseOperand = +popped - +equation[index];
+        console.log(reverseOperand);
+        compute(reverseTotalOperation, reverseOperand);
+      } else if (equation[index - 1] == "-") {
+        reverseTotalOperation = "+";
+        reverseOperand = +popped - +equation[index];
+        compute(reverseTotalOperation, reverseOperand);
+      } else if (equation[index - 1] == "*") {
+        reverseTotalOperation = "/";
+        reverseOperand = +equation[index]
+          ? +popped / +equation[index]
+          : +popped;
+        console.log(reverseOperand);
+        compute(reverseTotalOperation, reverseOperand);
+      } else if (equation[index - 1] == "/") reverseTotalOperation = "*";
 
       //Computer correct total
-      let reverseOperand = +popped - +equation[index];
-      total = localTotal;
-      compute(reverseTotalOperation, reverseOperand);
       total = localTotal;
       operator = "";
       //Update total if valid
@@ -144,10 +152,10 @@ deleteBtn.addEventListener("click", (e) => {
       index--;
 
       //Prevent multiple operator inputs
-      if(!+equation[index]){
+      if (!+equation[index]) {
         signCheck = false;
         inputCheck = true;
-      }else{
+      } else {
         inputCheck = false;
         signCheck = true;
       }
@@ -163,6 +171,7 @@ function compute(operator, operand) {
       break;
     case "-":
       localTotal = substract(total, +operand);
+      console.log(localTotal, operand);
       displayTotal(localTotal);
       break;
     case "/":
@@ -195,8 +204,10 @@ function divide(total, inputNum) {
   return total / inputNum;
 }
 
-function updateTime(){
+function updateTime() {
   const date = new Date();
-  headerTime.textContent = `${(date.getUTCHours()).toString().padStart(2,"0")}:${date.getUTCMinutes().toString().padStart(2,"0")}`
+  headerTime.textContent = `${date
+    .getUTCHours()
+    .toString()
+    .padStart(2, "0")}:${date.getUTCMinutes().toString().padStart(2, "0")}`;
 }
-
