@@ -67,6 +67,17 @@ section::after {
   z-index: 1;
 }
 
+.camera-hole {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: black;
+  box-shadow: 0px 0px 0px 1px rgb(80, 80, 80);
+  left: 47.5%;
+  top: 1%;
+}
+
 .container-hidden {
   visibility: hidden;
 }
@@ -144,12 +155,7 @@ button {
   align-items: center;
 }
 
-.camera-hole {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: black;
-}
+
 
 .notification {
   display: flex;
