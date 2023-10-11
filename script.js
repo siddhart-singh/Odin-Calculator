@@ -30,10 +30,11 @@ let total,
   chargerSwitch,
   chargerStatus = false;
 
-setInterval(updateTime(), 60 * 1000);
+setInterval(updateTime, 60 * 1000);
 
 function init() {
   total = 0;
+  updateTime();
   operator = null;
   inputNumber = "";
   localTotal = 0;
