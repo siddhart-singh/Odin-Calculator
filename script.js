@@ -235,11 +235,11 @@ function divide(total, inputNum) {
 }
 
 function updateTime() {
-  const date = new Date();
-  headerTime.textContent = `${date
-    .getUTCHours()
-    .toString()
-    .padStart(2, "0")}:${date.getUTCMinutes().toString().padStart(2, "0")}`;
+  const date = new Date().toLocaleTimeString().split(":");
+  headerTime.textContent = `${date[0].padStart(2, "0")}:${date[1].padStart(
+    2,
+    "0"
+  )}`;
 }
 
 let charging = [];
